@@ -1,3 +1,12 @@
+/*
+* File:		exercise1
+* Author:	202135486 Jiye Choi
+* Date:		20221117
+* Course:	Program Solving Method 2022
+*
+* Summary:	store data into struct array and find some jobs and print all data from matched index
+*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #define SIZE 30
 #include <stdio.h>
