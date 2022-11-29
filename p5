@@ -54,7 +54,7 @@ int main() {
 	Link(List2);
 	Delete_array(List);
 	Delete_linked(head);
-	printf("\n-----------------------------\n");
+	printf("\n-------------array----------------\n");
 	while (i <= size) {
 	/*while(i<30){*/ // 제거한 부분에 -1과 NULL 넣기
 		printf("\n%d\n", List[i].tag);
@@ -67,7 +67,7 @@ int main() {
 		i++;
 	}
 	struct INFO* p = (*head).next;
-	printf("\n-----------------------------\n");
+	printf("\n--------------linked---------------\n");
 	while (p) {
 		printf("\n%d\n", (*p).tag);
 		printf("%s\n", (*p).date);
