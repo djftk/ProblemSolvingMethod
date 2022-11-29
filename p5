@@ -1,0 +1,214 @@
+/**
+* File: p5.C
+*
+* Author: Gwak, Minseok (gwms517@gachon.ac.kr)
+* Date: 2022.11.27
+* Partner: alone
+* Coures: Problem Solving Methods
+*
+* Summary od File:
+*
+* This file is a team project code for Problem Solving Methods
+*
+*/
+
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+#include<stdio.h>
+
+#define _CRT_SECURE_NO_WARNINGS
+#define SIZE 30
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct INFO {
+	int tag;
+	char date[20];
+	char feePaid[10];
+	char name[20];
+	int age;
+	char organization[50];
+	char job[20];
+	struct INFO* next;
+};
+
+struct INFO* CreateNode(); // dummy head
+void InsertInfo(struct INFO [SIZE]); // receive file.
+void Delete_array(struct INFO [SIZE]); // delete "staff" in array
+void Link(struct INFO[SIZE]); // link struct
+void Delete_linked(struct INFO* ); // delete "staff" in linked list
+int size=29;
+
+int main() {
+	struct INFO List[SIZE];
+	struct INFO List2[SIZE];
+	struct INFO* head = CreateNode(); // dummy head node
+	(*head).next = &List2[0];
+
+	int i = 0;
+	InsertInfo(List);
+	InsertInfo(List2);
+	Link(List2);
+	Delete_array(List);
+	Delete_linked(head);
+	printf("\n-----------------------------\n");
+	while (i <= size) {
+	/*while(i<30){*/ // 제거한 부분에 -1과 NULL 넣기
+		printf("\n%d\n", List[i].tag);
+		printf("%s\n", List[i].date);
+		printf("%s\n", List[i].feePaid);
+		printf("%s\n", List[i].name);
+		printf("%d\n", List[i].age);
+		printf("%s\n", List[i].organization);
+		printf("%s", List[i].job);
+		i++;
+	}
+	struct INFO* p = (*head).next;
+	printf("\n-----------------------------\n");
+	while (p) {
+		printf("\n%d\n", (*p).tag);
+		printf("%s\n", (*p).date);
+		printf("%s\n", (*p).feePaid);
+		printf("%s\n", (*p).name);
+		printf("%d\n", (*p).age);
+		printf("%s\n", (*p).organization);
+		printf("%s", (*p).job);
+		p = (*p).next;
+	}
+}
+
+struct INFO* CreateNode()
+{
+	struct INFO* new_node = NULL;
+#ifdef DEBUG
+	printf("Return a new node address.\n");
+#endif
+	new_node = (struct INFO*)malloc(sizeof(struct INFO));
+
+	if (new_node == NULL)
+	{
+		printf("Memory is full.\n");
+		return NULL;
+	}
+	else
+	{
+		return new_node;
+	}
+}
+
+void InsertInfo(struct INFO List[]) {
+	FILE* fp = fopen("registration_data.txt", "r");
+
+	if (fp == NULL) {
+		printf("\nFile Could Not Be Opened");
+		exit(1);
+	}
+
+	char line[1000], * temp;
+	int i = 0, idx = 0;
+
+	while (!feof(fp)) {
+		fgets(line, 1000, fp);
+		printf("\n%s", line);
+		temp = strtok(line, "/");
+		while (temp != NULL) {
+			printf("%s\n", temp);
+			if (i == 0)
+				(List[idx]).tag = atoi(temp);
+			else if (i == 1)
+				strcpy((List[idx]).date, temp);
+			else if (i == 2)
+				strcpy((List[idx]).feePaid, temp);
+			else if (i == 3)
+				strcpy((List[idx]).name, temp);
+			else if (i == 4)
+				(List[idx]).age = atoi(temp);
+			else if (i == 5)
+				strcpy((List[idx]).organization, temp);
+			else if (i == 6)
+				strcpy((List[idx]).job, temp);
+			temp = strtok(NULL, "/");
+			i++;
+		}
+		idx++;
+		i = 0;
+	}
+	fclose(fp);
+}
+
+void Delete_array(struct INFO List[]) {
+	int i = 0, j = 0, f;
+	char job[20] = "staff";
+	while (i < 30) {
+		j = 0;
+		while ((List[i]).job[j] == job[j]) {
+			if (j == 4) {
+				for (f = i; f < size; f++) {
+					(List[f]).tag = (List[f + 1]).tag;
+					strcpy((List[f]).date, (List[f + 1]).date);
+					strcpy((List[f]).feePaid, (List[f + 1]).feePaid);
+					strcpy((List[f]).name, (List[f + 1]).name);
+					(List[f]).age = (List[f + 1]).age;
+					strcpy((List[f]).organization, (List[f + 1]).organization);
+					strcpy((List[f]).job, (List[f + 1]).job);
+				}
+				size = size - 1;
+				/*(List[i]).tag = -1; 제거한 부분에 -1과 NULL 넣기
+				(List[i]).date[0] = NULL;
+				(List[i]).feePaid[0] = NULL;
+				(List[i]).name[0] = NULL;
+				(List[i]).age = -1;
+				(List[i]).organization[0] = NULL;
+				(List[i]).job[0] = NULL;*/
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void Link(struct INFO List2[]) {
+	int i = 0;
+	while (i < 30) {
+		if (i == 29) {
+			(List2[29]).next = NULL;
+			break;
+		}
+		(List2[i]).next = &List2[i + 1];
+		i++;
+	}
+}
+
+void Delete_linked(struct INFO* head)
+{
+	int j = 0;
+	char job[20] = "staff";
+	/* Start from head->next instead of head */
+	struct INFO* ptr = head->next, * prev_ptr = head;
+
+	while (ptr)
+	{
+		j = 0;
+		while ((*ptr).job[j] == job[j]) {
+			if (j == 4) {
+				if (prev_ptr != NULL)
+					(*prev_ptr).next = (*ptr).next;
+				(*ptr).tag = -1;
+				(*ptr).date[0] = NULL;
+				(*ptr).feePaid[0] = NULL;
+				(*ptr).name[0] = NULL;
+				(*ptr).age = -1;
+				(*ptr).organization[0] = NULL;
+				(*ptr).job[0] = NULL;
+				break;
+			}
+			j++;
+		}
+
+		prev_ptr = ptr;
+		ptr = ptr->next; /* adjust next pointers  */
+	}
+}
