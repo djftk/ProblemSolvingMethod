@@ -186,7 +186,13 @@ void sortByAge(struct Person* array, int person_num)
     fclose(age_file);
 
 }
-
+/*
+* void search_gachon_engineer_in_struct(struct Person persons[])
+* Author: 202135846 Jiye Choi
+* Summary: search for engineer from Gachon University in struct
+* Parameter: structure array
+* Return: nothing
+*/
 void search_gachon_engineer_in_struct(struct Person persons[]) {
     printf("------ Search for Gachon University in struct ------\n");
     for (int i = 0; i < 30; i++) {
@@ -207,7 +213,13 @@ void search_gachon_engineer_in_struct(struct Person persons[]) {
     }
     printf("\n");
 }
-
+/*
+* void search_gachon_engineer_in_list(struct Person* head)
+* Author: 202135846 Jiye Choi
+* Summary: search for engineer from Gachon University in linked list
+* Parameter: structure pointer
+* Return: nothing
+*/
 void search_gachon_engineer_in_list(struct Person* head) {
     struct Person* p = head->next;
     printf("------ Search for Gachon University in list ------\n");
@@ -231,7 +243,13 @@ void search_gachon_engineer_in_list(struct Person* head) {
     }
     printf("\n");
 }
-
+/*
+* void search_fee_paid_in_struct(struct Person persons[])
+* Author: 202235002 Jiwon Kang
+* Summary: search for the fee-paid (yes) persons in structure array
+* Parameter: structure array
+* Return: nothing
+*/
 void search_fee_paid_in_struct(struct Person persons[]) {
     printf("------ Search for the fee-paid (yes) persons in struct ------\n");
     for (int i = 0; i < 30; i++) {
@@ -247,7 +265,13 @@ void search_fee_paid_in_struct(struct Person persons[]) {
     }
     printf("\n");
 }
-
+/*
+* void search_fee_paid_in_list(struct Person* head)
+* Author: 202235002 Jiwon Kang
+* Summary: search for the fee-paid (yes) persons in linked list
+* Parameter: structure pointer
+* Return: nothing
+*/
 void search_fee_paid_in_list(struct Person* head)
 {
     struct Person* p = head->next;
