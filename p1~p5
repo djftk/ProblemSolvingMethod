@@ -1,12 +1,3 @@
-/*
-* File:		exercise1
-* Author:	202135486 Jiye Choi
-* Date:		20221117
-* Course:	Program Solving Method 2022
-*
-* Summary:	search gachon enginner in struct array and linked list and print all data from the mathced person
-*/
-
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
@@ -59,7 +50,7 @@ int main()
 
 /*
 * int load_data (struct Person*)
-* Author: ChanWoong Hwang
+* Author: 202235154 ChanWoong Hwang
 * Summary: read the text file and store the data in a struct array
 * Parameter: struct Person pointer
 * Return: length of struct array
@@ -86,7 +77,7 @@ int load_data(struct  Person* regi_Person)
 
 /*
 * void print_array(struct Person* regi_person, int person_num)
-* Author: chanwoong Hwang
+* Author: 202235154 chanwoong Hwang
 * Summary: print the struct array the data stored
 * Parameter: struct Person pointer, integer
 * Return: nothing
@@ -99,7 +90,7 @@ void print_array(struct Person* regi_person, int person_num)
 
 /*
 * struct Person* linked_open()
-* Author: chanwoong Hwang
+* Author: 202235154 chanwoong Hwang
 * Summary: read the text file and store the data in a linked list
 * Parameter: none
 * Return: address of linked list
