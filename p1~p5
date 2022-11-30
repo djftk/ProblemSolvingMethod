@@ -326,7 +326,7 @@ void Delete_linked(struct Person* head)
     printf("\n-------------Print data deleted Linked list----------------");
     ptr = head->next;
     while (ptr) {
-        printf("\n%d/", (*ptr).tag);
+        printf("%d/", (*ptr).tag);
         printf("%s/", (*ptr).date);
         printf("%s/", (*ptr).fee_paid);
         printf("%s/", (*ptr).name);
@@ -365,7 +365,7 @@ void Delete_array(struct Person List[]) {
 	printf("\n-------------Print data deleted array----------------");
 	i = 0;
 	while (i < 30) {
-		printf("\n%d/", List[i].tag);
+		printf("%d/", List[i].tag);
 		printf("%s/", List[i].date);
 		printf("%s/", List[i].fee_paid);
 		printf("%s/", List[i].name);
