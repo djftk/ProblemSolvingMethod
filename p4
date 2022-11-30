@@ -28,7 +28,9 @@ struct Person* linked_open();
 void sortByAge(struct Person*, int);
 void print_linked(struct Person*);
 void print_array(struct Person*, int);
+void search_fee_paid_in_struct(struct Person persons[]);
 void search_gachon_engineer_in_struct(struct Person persons[]);
+void search_fee_paid_in_list(struct Person* head);
 void search_gachon_engineer_in_list(struct Person* head);
 
 int main()
@@ -175,6 +177,7 @@ void search_gachon_engineer_in_struct(struct Person persons[]) {
     }
     printf("\n");
 }
+
 void search_gachon_engineer_in_list(struct Person* head) {
     struct Person* p = head->next;
     printf("------ Search for Gachon University in list ------\n");
@@ -194,6 +197,43 @@ void search_gachon_engineer_in_list(struct Person* head) {
             }
 
         }
+        p = p->next;
+    }
+    printf("\n");
+}
+
+void search_fee_paid_in_struct(struct Person persons[]) {
+    printf("------ Search for the fee-paid (yes) persons in struct ------\n");
+    for (int i = 0; i < 30; i++) {
+        if (strcmp(persons[i].fee_paid, "yes") == 0) {
+            printf("%d %s %s %s %d %s %s\n", persons[i].tag,
+                persons[i].date,
+                persons[i].fee_paid,
+                persons[i].name,
+                persons[i].age,
+                persons[i].organization,
+                persons[i].job);
+        }
+    }
+    printf("\n");
+}
+
+void search_fee_paid_in_list(struct Person* head)
+{
+    struct Person* p = head->next;
+    printf("------ Search for the fee-paid (yes) persons in list ------\n");
+    for (int i = 0; i < 30; i++) {
+
+        if (strcmp(p->fee_paid, "yes") == 0) {
+            printf("%d %s %s %s %d %s %s\n", p->tag,
+                p->date,
+                p->fee_paid,
+                p->name,
+                p->age,
+                p->organization,
+                p->job);
+        }
+
         p = p->next;
     }
     printf("\n");
