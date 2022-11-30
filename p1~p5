@@ -17,8 +17,7 @@ struct Person {
 int load_data(struct Person*);
 struct Person* linked_open();
 void sortByAge(struct Person*, int);
-void print_linked(struct Person*);
-void print_array(struct Person*, int);
+void print_list(struct Person*);
 void search_fee_paid_in_struct(struct Person persons[]);
 void search_gachon_engineer_in_struct(struct Person persons[]);
 void search_fee_paid_in_list(struct Person* head);
@@ -37,6 +36,7 @@ int main()
     head = linked_open();
 
     sortByAge(persons, person_num);
+    print_list(head);
 
     search_fee_paid_in_struct(persons);
     search_fee_paid_in_list(head);
@@ -76,16 +76,27 @@ int load_data(struct  Person* regi_Person)
 }
 
 /*
-* void print_array(struct Person* regi_person, int person_num)
+* void print_list(struct Person* head)
 * Author: 202235154 Chanwoong Hwang
-* Summary: print the struct array the data stored
-* Parameter: struct Person pointer, integer
+* Summary: print the linked list
+* Parameter: struct person pointer
 * Return: nothing
 */
-void print_array(struct Person* regi_person, int person_num)
-{
-    for (int i = 0; i < person_num; i++)
-        printf("%d %s %s %s %d %s %s\n", regi_person[i].tag, regi_person[i].date, regi_person[i].fee_paid, regi_person[i].name, regi_person[i].age, regi_person[i].organization, regi_person[i].job);
+void print_list(struct Person* head) {
+    struct Person* p = head->next;
+    printf("-----print linked list-----\n");
+    for (int i = 0; i < 30; i++) {
+        printf("%d %s %s %s %d %s %s\n", p->tag,
+            p->date,
+            p->fee_paid,
+            p->name,
+            p->age,
+            p->organization,
+            p->job);
+
+        p = p->next;
+    }
+    printf("\n");
 }
 
 /*
@@ -128,26 +139,10 @@ struct Person* linked_open()
 }
 
 /*
-* void print_linked(struct Person* ptr)
-* Author: 202235154 chanwoong Hwang
-* Summary: print linked list
-* Parameter: struct Person pointer
-* Return: nothing
-*/
-void print_linked(struct Person* ptr)
-{
-    while (ptr != NULL)
-    {
-        printf("%d %s %s %s %d %s %s\n", ptr->tag, ptr->date, ptr->fee_paid, ptr->name, ptr->age, ptr->organization, ptr->job);
-        ptr = ptr->next;
-    }
-}
-
-/*
 * void sortByAge(struct Person* array, int person_num)
 * Author: 202235154 Chanwoong Hwang
 * Summary: order the array by age
-* Parameter: structure pointer, integer
+* Parameter: struct person pointer, integer
 * Return: nothing
 */
 void sortByAge(struct Person* array, int person_num)
@@ -190,7 +185,7 @@ void sortByAge(struct Person* array, int person_num)
 * void search_gachon_engineer_in_struct(struct Person persons[])
 * Author: 202135846 Jiye Choi
 * Summary: search for engineer from Gachon University in struct
-* Parameter: structure array
+* Parameter: struct person array
 * Return: nothing
 */
 void search_gachon_engineer_in_struct(struct Person persons[]) {
@@ -217,7 +212,7 @@ void search_gachon_engineer_in_struct(struct Person persons[]) {
 * void search_gachon_engineer_in_list(struct Person* head)
 * Author: 202135846 Jiye Choi
 * Summary: search for engineer from Gachon University in linked list
-* Parameter: structure pointer
+* Parameter: struct person pointer
 * Return: nothing
 */
 void search_gachon_engineer_in_list(struct Person* head) {
@@ -247,7 +242,7 @@ void search_gachon_engineer_in_list(struct Person* head) {
 * void search_fee_paid_in_struct(struct Person persons[])
 * Author: 202235002 Jiwon Kang
 * Summary: search for the fee-paid (yes) persons in structure array
-* Parameter: structure array
+* Parameter: struct person array
 * Return: nothing
 */
 void search_fee_paid_in_struct(struct Person persons[]) {
@@ -345,35 +340,35 @@ void Delete_linked(struct Person* head)
 * Return: nothing
 */
 void Delete_array(struct Person List[]) {
-	int i = 0, j = 0, f;
-	char job[20] = "staff";
-	while (i < 30) {
-		j = 0;
-		while ((List[i]).job[j] == job[j]) {
-			if (j == 4) {
-				(List[i]).tag = -1; 
-				(List[i]).date[0] = NULL;
-				(List[i]).fee_paid[0] = NULL;
-				(List[i]).name[0] = NULL;
-				(List[i]).age = -1;
-				(List[i]).organization[0] = NULL;
-				(List[i]).job[0] = NULL;
-			}
-			j++;
-		}
-		i++;
-	}
-	printf("\n-------------Print data deleted array----------------");
-	i = 0;
-	while (i < 30) {
-		printf("\n%d/", List[i].tag);
-		printf("%s/", List[i].date);
-		printf("%s/", List[i].fee_paid);
-		printf("%s/", List[i].name);
-		printf("%d/", List[i].age);
-		printf("%s/", List[i].organization);
-		printf("%s", List[i].job);
-		i++;
-	}
-	printf("\n");
+    int i = 0, j = 0, f;
+    char job[20] = "staff";
+    while (i < 30) {
+        j = 0;
+        while ((List[i]).job[j] == job[j]) {
+            if (j == 4) {
+                (List[i]).tag = -1;
+                (List[i]).date[0] = NULL;
+                (List[i]).fee_paid[0] = NULL;
+                (List[i]).name[0] = NULL;
+                (List[i]).age = -1;
+                (List[i]).organization[0] = NULL;
+                (List[i]).job[0] = NULL;
+            }
+            j++;
+        }
+        i++;
+    }
+    printf("\n-------------Print data deleted array----------------");
+    i = 0;
+    while (i < 30) {
+        printf("\n%d/", List[i].tag);
+        printf("%s/", List[i].date);
+        printf("%s/", List[i].fee_paid);
+        printf("%s/", List[i].name);
+        printf("%d/", List[i].age);
+        printf("%s/", List[i].organization);
+        printf("%s", List[i].job);
+        i++;
+    }
+    printf("\n");
 }
