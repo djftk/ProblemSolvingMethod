@@ -24,6 +24,7 @@ void search_fee_paid_in_list(struct Person* head);
 void search_gachon_engineer_in_list(struct Person* head);
 void Delete_array(struct Person List[]);
 void Delete_linked(struct Person* head);
+void updateLateSubmitters(struct Person persons[], int);
 
 int main()
 {
@@ -44,7 +45,8 @@ int main()
     search_gachon_engineer_in_list(head);
     Delete_array(persons);
     Delete_linked(head);
-
+    updateLateSubmitters(persons, person_num);
+    
     return 0;
 }
 
@@ -371,4 +373,50 @@ void Delete_array(struct Person List[]) {
         i++;
     }
     printf("\n");
+}
+/*
+* void updateLateSubmitters(struct Person persons[], int person_num)
+* Author: 202135801 Jihun Yang
+* Summary: add registration information about "kang", and sort by age
+* Parameter: struct person array
+* Return: nothing
+*/
+void updateLateSubmitters(struct Person persons[], int person_num)
+{
+    persons[30].tag = 31;
+    strcpy(persons[30].date, "2022-11-30");
+    strcpy(persons[30].fee_paid, "yes");
+    strcpy(persons[30].name, "Kang");
+    persons[30].age = 25;
+    strcpy(persons[30].organization, "Gachon University");
+    strcpy(persons[30].job, "Student");
+
+    person_num++;
+
+    struct Person temp;
+
+    for (int i = 0; i < person_num; i++){
+        for (int j = 0; j < person_num - i; j++){
+            if (persons[j].age > persons[j + 1].age){
+                temp = persons[j];
+                persons[j] = persons[j + 1];
+                persons[j + 1] = temp;
+            }
+        }
+    }
+    for (int v = 0; v < person_num; v++){
+        temp = persons[v + 1];
+        persons[v] = temp;
+    }
+
+    printf("\nKang's data has been updated.\n");
+
+    printf("-------------array----------------\n");
+    for (int i = 0; i < 31; i++) {
+        if (persons[i].tag == -1) {
+            continue;
+        }
+        printf("%d/%s/%s/%s/%d/%s/%s\n", persons[i].tag, persons[i].date, persons[i].fee_paid, persons[i].name, persons[i].age
+        , persons[i].organization, persons[i].job);
+    }
 }
