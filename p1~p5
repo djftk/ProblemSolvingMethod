@@ -57,6 +57,13 @@ int main()
     return 0;
 }
 
+/*
+* int load_data (struct Person*)
+* Author: ChanWoong Hwang
+* Summary: read the text file and store the data in a struct array
+* Parameter: struct Person pointer
+* Return: length of struct array
+*/
 int load_data(struct  Person* regi_Person)
 {
     int i = 0, person_num = 0;
@@ -77,12 +84,26 @@ int load_data(struct  Person* regi_Person)
     return person_num;
 }
 
+/*
+* void print_array(struct Person* regi_person, int person_num)
+* Author: chanwoong Hwang
+* Summary: print the struct array the data stored
+* Parameter: struct Person pointer, integer
+* Return: nothing
+*/
 void print_array(struct Person* regi_person, int person_num)
 {
     for (int i = 0; i < person_num; i++)
         printf("%d %s %s %s %d %s %s\n", regi_person[i].tag, regi_person[i].date, regi_person[i].fee_paid, regi_person[i].name, regi_person[i].age, regi_person[i].organization, regi_person[i].job);
 }
 
+/*
+* struct Person* linked_open()
+* Author: chanwoong Hwang
+* Summary: read the text file and store the data in a linked list
+* Parameter: none
+* Return: address of linked list
+*/
 struct Person* linked_open()
 {
     int i = 0;
@@ -115,6 +136,13 @@ struct Person* linked_open()
     return head;
 }
 
+/*
+* void print_linked(struct Person* ptr)
+* Author: 202235154 chanwoong Hwang
+* Summary: print linked list
+* Parameter: structure pointer
+* Return: nothing
+*/
 void print_linked(struct Person* ptr)
 {
     while (ptr != NULL)
@@ -124,6 +152,13 @@ void print_linked(struct Person* ptr)
     }
 }
 
+/*
+* void sortByAge(struct Person* array, int person_num)
+* Author: 202235154 chanwoong Hwang
+* Summary: order the array by age
+* Parameter: structure pointer, integer
+* Return: nothing
+*/
 void sortByAge(struct Person* array, int person_num)
 {
     struct Person temp;
