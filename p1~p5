@@ -194,7 +194,7 @@ void sortByAge(struct Person* array, int person_num)
 * Return: nothing
 */
 void search_gachon_engineer_in_struct(struct Person persons[]) {
-    printf("------ Search for Gachon University in struct ------\n");
+    printf("------ Search for Gachon University engineer in struct ------\n");
     for (int i = 0; i < 30; i++) {
         char* univ = persons[i].organization;
         char* job = persons[i].job;
@@ -222,7 +222,7 @@ void search_gachon_engineer_in_struct(struct Person persons[]) {
 */
 void search_gachon_engineer_in_list(struct Person* head) {
     struct Person* p = head->next;
-    printf("------ Search for Gachon University in list ------\n");
+    printf("------ Search for Gachon University engineer in list ------\n");
     for (int i = 0; i < 30; i++) {
         char* univ = p->organization;
         char* job = p->job;
@@ -323,7 +323,7 @@ void Delete_linked(struct Person* head)
         prev_ptr = ptr;
         ptr = ptr->next; /* adjust next pointers  */
     }
-    printf("\n-------------Linked list----------------");
+    printf("\n-------------Print data deleted Linked list----------------");
     ptr = head->next;
     while (ptr) {
         printf("\n%d/", (*ptr).tag);
@@ -362,7 +362,7 @@ void Delete_array(struct Person List[]) {
 		}
 		i++;
 	}
-	printf("\n-------------array----------------");
+	printf("\n-------------Print data deleted array----------------");
 	i = 0;
 	while (i < 30) {
 		printf("\n%d/", List[i].tag);
