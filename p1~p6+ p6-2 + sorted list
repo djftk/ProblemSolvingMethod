@@ -13,6 +13,7 @@ struct Person {
     char job[20];
     struct Person* next;
 };
+
 struct Person* CreateNode();
 int load_data(struct Person*);
 void linked_open(struct Person*);
@@ -52,7 +53,13 @@ int main()
    
     return 0;
 }
-
+/*
+* struct Person* CreateNode()
+* Author: 202235154 Chanwoong Hwang
+* Summary: create dummy head
+* Parameter: struct Person pointer
+* Return: struct Person pointer
+*/
 struct Person* CreateNode()
 {
 	struct Person* new_node = NULL;
@@ -98,6 +105,13 @@ int load_data(struct  Person* regi_Person)
     return person_num;
 }
 
+/*
+* void Link(struct Person List2[])
+* Author: 202235154 Chanwoong Hwang
+* Summary: link the data in a struct array
+* Parameter: struct Person
+* Return: nothing
+*/
 void Link(struct Person List2[]) {
     int i = 0;
     while (i < 30) {
@@ -391,7 +405,7 @@ void Delete_array(struct Person List[]) {
 /*
 * void updateLateSubmitters(struct Person persons[], int person_num)
 * Author: 202135801 Jihun Yang
-* Summary: add registration information about "kang", and sort by age
+* Summary: add registration information about "kang", and sort by age in the struct array
 * Parameter: struct person array
 * Return: nothing
 */
@@ -432,6 +446,13 @@ void updateLateSubmitters(struct Person persons[], int person_num)
     }
 }
 
+/*
+* void updateLateSubmitters_linked(struct Person* head)
+* Author: 202135801 Jihun Yang
+* Summary: add registration information about "kang", and sort by age in the linked list
+* Parameter: struct person array
+* Return: none
+*/
 void updateLateSubmitters_linked(struct Person* head)
 {
     struct Person* p = head->next, * prev_p = head;
