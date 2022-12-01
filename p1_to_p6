@@ -71,7 +71,7 @@ int load_data(struct  Person* regi_Person)
     else
     {
         while (fscanf(regi_file, "%d %*[/] %[^/] %*[/] %[^/] %*[/] %[^/] %*[/] %d %*[/] %[^/] %*[/] %s", &regi_Person[i].tag, regi_Person[i].date, regi_Person[i].fee_paid, regi_Person[i].name, &regi_Person[i].age, regi_Person[i].organization, regi_Person[i].job) == 7)
-            i++;
+        i++;
     }
     person_num = i;
 
@@ -141,6 +141,7 @@ void sortByAge(struct Person* array, int person_num)
         for (int i = 0; i < person_num; i++)
         {
             fprintf(age_file, "%d_%s_%s_%s_%d_%s_%s\n", array[i].tag, array[i].date, array[i].fee_paid, array[i].name, array[i].age, array[i].organization, array[i].job);
+            //form text file by using sorted array
         }
     }
 
@@ -176,7 +177,7 @@ struct Person* linked_open(struct Person* array, int person_num)
         node->age = array[i].age;
         strcpy(node->organization, array[i].organization);
         strcpy(node->job, array[i].job);
-
+        //copy struct data to linked list 
 
         prev_node->next = node;
         prev_node = node;
