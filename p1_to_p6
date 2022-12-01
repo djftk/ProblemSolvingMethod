@@ -452,26 +452,13 @@ void updateLateSubmitters(struct Person persons[], int person_num)
 */
 void updateLateSubmitters_linked(struct Person* head)
 {
-    struct Person* ptr = head->next, * prev_ptr = head;
-    struct Person* late = NULL;
-    late->tag = 31;
-    strcpy(late->date, "2022-11-30");
-    strcpy(late->fee_paid, "yes");
-    strcpy(late->name, "Kang");
-    late->age = 25;
-    strcpy(late->organization, "Gachon University");
-    strcpy(late->job, "Student");
-    late->next = NULL;
+    struct Person* ptr = head->next, * prev_ptr = head, *new_node = NULL;
+    struct Person late = { 31, "2022-11-30", "yes", "Kang", 25, "Gachon University", "student", 0 };
+    late.next = NULL;
 
-    while (ptr)
-    {
-        if (ptr->age>late->age)
-        {
-            prev_ptr->next = &late;
-            late->next = &ptr;
-        }
-        ptr = (*ptr).next;
-    }
+    new_node = &late;
+    prev_ptr->next = new_node;
+    new_node->next = ptr;
 
     printf("\----------print data updated linked list----------\n");
     ptr = head->next;
