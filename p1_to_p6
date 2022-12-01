@@ -37,7 +37,7 @@ int main()
     person_num = load_data(persons);
 
     sortByAge(persons, person_num);
-    
+
     head = linked_open(persons, person_num);
     print_list(head);
 
@@ -91,7 +91,7 @@ void print_list(struct Person* head) {
     struct Person* p = head->next;
     printf("-----print linked list-----\n");
     for (int i = 0; i < 30; i++) {
-        printf("%d %s %s %s %d %s %s\n", p->tag,
+        printf("%d/%s/%s/%s/%d/%s/%s\n", p->tag,
             p->date,
             p->fee_paid,
             p->name,
@@ -140,7 +140,7 @@ void sortByAge(struct Person* array, int person_num)
     {
         for (int i = 0; i < person_num; i++)
         {
-            fprintf(age_file, "%d %s %s %s %d %s %s\n", array[i].tag, array[i].date, array[i].fee_paid, array[i].name, array[i].age, array[i].organization, array[i].job);
+            fprintf(age_file, "%d_%s_%s_%s_%d_%s_%s\n", array[i].tag, array[i].date, array[i].fee_paid, array[i].name, array[i].age, array[i].organization, array[i].job);
         }
     }
 
@@ -156,7 +156,7 @@ void sortByAge(struct Person* array, int person_num)
 * Parameter: none
 * Return: address of linked list
 */
-struct Person* linked_open(struct Person *array, int person_num)
+struct Person* linked_open(struct Person* array, int person_num)
 {
 
     struct Person* node;
@@ -166,22 +166,22 @@ struct Person* linked_open(struct Person *array, int person_num)
     head = (struct Person*)malloc(sizeof(struct Person));
     prev_node = head;
 
-    
+
     node = (struct Person*)malloc(sizeof(struct Person));
-    for (int i=0;i<person_num;i++) {
+    for (int i = 0; i < person_num; i++) {
         node->tag = array[i].tag;
         strcpy(node->date, array[i].date);
         strcpy(node->fee_paid, array[i].fee_paid);
         strcpy(node->name, array[i].name);
-        node->age =  array[i].age;
+        node->age = array[i].age;
         strcpy(node->organization, array[i].organization);
         strcpy(node->job, array[i].job);
-        
-        
+
+
         prev_node->next = node;
         prev_node = node;
         node = (struct Person*)malloc(sizeof(struct Person));
-     }
+    }
     free(node); //free trash node
     prev_node->next = NULL; //last node
 
@@ -202,7 +202,7 @@ void search_gachon_engineer_in_struct(struct Person persons[]) {
         char* job = persons[i].job;
         if (strcmp(univ, "Gachon University") == 0) {
             if (strcmp(job, "engineer") == 0) {
-                printf("%d %s %s %s %d %s %s\n", persons[i].tag,
+                printf("%d/%s/%s/%s/%d/%s/%s\n", persons[i].tag,
                     persons[i].date,
                     persons[i].fee_paid,
                     persons[i].name,
@@ -231,7 +231,7 @@ void search_gachon_engineer_in_list(struct Person* head) {
 
         if (strcmp(univ, "Gachon University") == 0) {
             if (strcmp(job, "engineer") == 0) {
-                printf("%d %s %s %s %d %s %s\n", p->tag,
+                printf("%d/%s/%s/%s/%d/%s/%s\n", p->tag,
                     p->date,
                     p->fee_paid,
                     p->name,
@@ -256,7 +256,7 @@ void search_fee_paid_in_struct(struct Person persons[]) {
     printf("------ Search for the fee-paid (yes) persons in struct ------\n");
     for (int i = 0; i < 30; i++) {
         if (strcmp(persons[i].fee_paid, "yes") == 0) {
-            printf("%d %s %s %s %d %s %s\n", persons[i].tag,
+            printf("%d/%s/%s/%s/%d/%s/%s\n", persons[i].tag,
                 persons[i].date,
                 persons[i].fee_paid,
                 persons[i].name,
@@ -281,7 +281,7 @@ void search_fee_paid_in_list(struct Person* head)
     for (int i = 0; i < 30; i++) {
 
         if (strcmp(p->fee_paid, "yes") == 0) {
-            printf("%d %s %s %s %d %s %s\n", p->tag,
+            printf("%d/%s/%s/%s/%d/%s/%s\n", p->tag,
                 p->date,
                 p->fee_paid,
                 p->name,
