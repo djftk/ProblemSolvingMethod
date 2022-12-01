@@ -71,7 +71,7 @@ int load_data(struct  Person* regi_Person)
     else
     {
         while (fscanf(regi_file, "%d %*[/] %[^/] %*[/] %[^/] %*[/] %[^/] %*[/] %d %*[/] %[^/] %*[/] %s", &regi_Person[i].tag, regi_Person[i].date, regi_Person[i].fee_paid, regi_Person[i].name, &regi_Person[i].age, regi_Person[i].organization, regi_Person[i].job) == 7)
-        i++;
+            i++;
     }
     person_num = i;
 
@@ -453,21 +453,22 @@ void updateLateSubmitters(struct Person persons[], int person_num)
 void updateLateSubmitters_linked(struct Person* head)
 {
     struct Person* ptr = head->next, * prev_ptr = head;
-    struct Person late;
-    late.tag = 31;
-    strcpy(late.date, "2022-11-30");
-    strcpy(late.fee_paid, "yes");
-    strcpy(late.name, "Kang");
-    late.age = 25;
-    strcpy(late.organization, "Gachon University");
-    strcpy(late.job, "Student");
-    late.next = NULL;
+    struct Person* late = NULL;
+    late->tag = 31;
+    strcpy(late->date, "2022-11-30");
+    strcpy(late->fee_paid, "yes");
+    strcpy(late->name, "Kang");
+    late->age = 25;
+    strcpy(late->organization, "Gachon University");
+    strcpy(late->job, "Student");
+    late->next = NULL;
 
     while (ptr)
     {
-        if ((*ptr).tag == 20)
+        if (ptr->age>late->age)
         {
-            (*ptr).next = &late;
+            prev_ptr->next = &late;
+            late->next = &ptr;
         }
         ptr = (*ptr).next;
     }
