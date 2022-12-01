@@ -25,6 +25,7 @@ void search_gachon_engineer_in_list(struct Person* head);
 void Delete_array(struct Person List[]);
 void Delete_linked(struct Person* head);
 void updateLateSubmitters(struct Person persons[], int);
+void updateLateSubmitters_linked(struct Person*);
 
 int main()
 {
@@ -46,6 +47,7 @@ int main()
     Delete_array(persons);
     Delete_linked(head);
     updateLateSubmitters(persons, person_num);
+    updateLateSubmitters_linked(head);
 
     return 0;
 }
@@ -299,40 +301,45 @@ void search_fee_paid_in_list(struct Person* head)
 */
 void Delete_linked(struct Person* head)
 {
-    char job[20] = "staff";
-    /* Start from head->next instead of head */
-    struct Person* ptr = head->next, * prev_ptr = head;
+	int j = 0;
+	char job[20] = "staff";
+	/* Start from head->next instead of head */
+	struct Person* ptr = head->next, * prev_ptr = head;
 
-    while (ptr)
-    {
-        if (strcmp(job, "staff") == 0) {
-            if (prev_ptr != NULL)
-                (*prev_ptr).next = (*ptr).next;
-            (*ptr).tag = -1;
-            (*ptr).date[0] = NULL;
-            (*ptr).fee_paid[0] = NULL;
-            (*ptr).name[0] = NULL;
-            (*ptr).age = -1;
-            (*ptr).organization[0] = NULL;
-            (*ptr).job[0] = NULL;
-            break;
-        }
-        prev_ptr = ptr;
-        ptr = ptr->next; /* adjust next pointers  */
-    }
-    printf("\n-------------Print data deleted Linked list----------------");
-    ptr = head->next;
-    while (ptr) {
-        printf("\n%d/", (*ptr).tag);
-        printf("%s/", (*ptr).date);
-        printf("%s/", (*ptr).fee_paid);
-        printf("%s/", (*ptr).name);
-        printf("%d/", (*ptr).age);
-        printf("%s/", (*ptr).organization);
-        printf("%s", (*ptr).job);
-        ptr = (*ptr).next;
-    }
-    printf("\n");
+	while (ptr)
+	{
+		j = 0;
+		while ((*ptr).job[j] == job[j]) {
+			if (j == 4) {
+				if (prev_ptr != NULL)
+					(*prev_ptr).next = (*ptr).next;
+				(*ptr).tag = -1;
+				(*ptr).date[0] = NULL;
+				(*ptr).fee_paid[0] = NULL;
+				(*ptr).name[0] = NULL;
+				(*ptr).age = -1;
+				(*ptr).organization[0] = NULL;
+				(*ptr).job[0] = NULL;
+				break;
+			}
+			j++;
+		}
+
+		prev_ptr = ptr;
+		ptr = ptr->next; /* adjust next pointers  */
+	}
+	printf("\n-------------Linked list----------------");
+	ptr = head->next;
+	while (ptr) {
+		printf("\n%d/", (*ptr).tag);
+		printf("%s/", (*ptr).date);
+		printf("%s/", (*ptr).fee_paid);
+		printf("%s/", (*ptr).name);
+		printf("%d/", (*ptr).age);
+		printf("%s/", (*ptr).organization);
+		printf("%s", (*ptr).job);
+		ptr = (*ptr).next;
+	}
 }
 /*
 * void Delete_array(struct Person List[])
@@ -422,5 +429,41 @@ void updateLateSubmitters(struct Person persons[], int person_num)
         }
         printf("%d/%s/%s/%s/%d/%s/%s\n", persons[i].tag, persons[i].date, persons[i].fee_paid, persons[i].name, persons[i].age
             , persons[i].organization, persons[i].job);
+    }
+}
+
+void updateLateSubmitters_linked(struct Person* head)
+{
+    struct Person* ptr = head->next, * prev_ptr = head;
+    struct Person late;
+    late.tag = 31;
+    strcpy(late.date, "2022-11-30");
+    strcpy(late.fee_paid, "yes");
+    strcpy(late.name, "Kang");
+    late.age = 25;
+    strcpy(late.organization, "Gachon University");
+    strcpy(late.job, "Student");
+    late.next = NULL;
+
+    while (ptr)
+    {
+        if ((*ptr).tag == 20)
+        {
+            (*ptr).next = &late;
+        }
+        ptr = (*ptr).next;
+    }         
+
+    printf("\n-------------Linked list----------------");
+    ptr = head->next;
+    while (ptr) {
+        printf("\n%d/", (*ptr).tag);
+        printf("%s/", (*ptr).date);
+        printf("%s/", (*ptr).fee_paid);
+        printf("%s/", (*ptr).name);
+        printf("%d/", (*ptr).age);
+        printf("%s/", (*ptr).organization);
+        printf("%s", (*ptr).job);
+        ptr = (*ptr).next;
     }
 }
