@@ -447,30 +447,43 @@ void updateLateSubmitters(struct Person persons[], int person_num)
 * void updateLateSubmitters_linked(struct Person persons*)
 * Author: 202235005 Minseok Gwak
 * Summary: add registration information about "kang", and sort by age
-* Parameter: struct person array
+* Parameter: struct person pointer
 * Return: nothing
 */
 void updateLateSubmitters_linked(struct Person* head)
 {
-    struct Person* ptr = head->next, * prev_ptr = head, *new_node = NULL;
-    struct Person late = { 31, "2022-11-30", "yes", "Kang", 25, "Gachon University", "student", 0 };
+    struct Person* p = head->next, * prev_p = head;
+    struct Person late;
+
+    late.tag = 31;
+    strcpy(late.date, "2022-11-30");
+    strcpy(late.fee_paid, "yes");
+    strcpy(late.name, "Kang");
+    late.age = 25;
+    strcpy(late.organization, "Gachon University");
+    strcpy(late.job, "Student");
     late.next = NULL;
 
-    new_node = &late;
-    prev_ptr->next = new_node;
-    new_node->next = ptr;
 
-    printf("\----------print data updated linked list----------\n");
-    ptr = head->next;
-    while (ptr) {
-        printf("\n%d/", (*ptr).tag);
-        printf("%s/", (*ptr).date);
-        printf("%s/", (*ptr).fee_paid);
-        printf("%s/", (*ptr).name);
-        printf("%d/", (*ptr).age);
-        printf("%s/", (*ptr).organization);
-        printf("%s", (*ptr).job);
-        ptr = (*ptr).next;
+    while (p)
+    {
+        if (p->age > late.age && prev_p->age < late.age) {
+            late.next = (*prev_p).next;
+            (*prev_p).next = &late;
+        }
+        prev_p = p;
+        p = p->next; /* adjust next pointers  */
     }
-    printf("\n");
+    printf("----------print data updated linked list----------");
+    p = head->next;
+    while (p) {
+        printf("\n%d/", (*p).tag);
+        printf("%s/", (*p).date);
+        printf("%s/", (*p).fee_paid);
+        printf("%s/", (*p).name);
+        printf("%d/", (*p).age);
+        printf("%s/", (*p).organization);
+        printf("%s", (*p).job);
+        p = (*p).next;
+    }
 }
