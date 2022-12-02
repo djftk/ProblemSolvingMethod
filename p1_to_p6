@@ -324,7 +324,7 @@ void Delete_array(struct Person List[]) {
         }
         i++;
     }
-    printf("\n\nKang's data has been deleted.\n\n\n");
+    printf("\n\nstaff of job info data has been deleted.\n\n\n");
     printf("----------Print data deleted array----------\n");
     i = 0;
     while (i < 30) {
